@@ -1,0 +1,35 @@
+# ===== Operating system =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Editors / IDEs =====
+.vscode/
+.idea/
+*.code-workspace
+*.swp
+
+# ===== Source materials (kept locally, not published) =====
+# Original project documents used to build the site
+linked-in/
+# CV contains private contact details (phone number) - do not publish
+CV Steyn Schippers (Engels).pdf
+
+# ===== Tooling & test artifacts =====
+.playwright-mcp/
+node_modules/
+*.log
+
+# ===== Screenshots / scratch =====
+home.png
+food-detail.png
+_verify_*.png
+.extract/
+
+# ===== Python cache (from running a local http.server) =====
+__pycache__/
+*.pyc
+
+# ===== Office temp / lock files =====
+~$*
+~WRL*.tmp

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Soft Robotic Gripper - Steyn Schippers</title>
+  <meta name="description" content="Soft robotic gripper for underwater body retrieval.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="../assets/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <i class="bi bi-list mobile-nav-toggle"></i>
+
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=200&h=200&auto=format&fit=crop"
+          alt="Steyn Schippers" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="../index.html">Steyn Schippers</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://nl.linkedin.com/in/steyn-schippers" class="linkedin" title="LinkedIn" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a>
+          <a href="mailto:steyn.schippers@kpnmail.nl" class="email" title="Email"><i class="bx bx-envelope"></i></a>
+        </div>
+      </div>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="../index.html#hero" class="nav-link"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="../index.html#about" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="../index.html#skills" class="nav-link"><i class="bx bx-award"></i> <span>Skills</span></a></li>
+          <li><a href="../index.html#resume" class="nav-link"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="../index.html#projects" class="nav-link active"><i class="bx bx-book-content"></i> <span>Projects</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="project-detail">
+      <div class="container" data-aos="fade-up">
+
+        <a href="../index.html#projects" class="back-btn"><i class="bx bx-arrow-back"></i> Back to Projects</a>
+
+        <div class="section-title">
+          <h2>Soft Robotic Gripper for Underwater Body Retrieval</h2>
+          <p>Design and prototype of a retrieval system for "Dorus", an autonomous fire-service rescue boat: a silicone
+            soft gripper, protective capsule and magnetic drive recover a body from the bottom of a lake without damage.</p>
+        </div>
+
+        <div class="detail-meta">
+          <span class="badge-tag">Mechatronics</span>
+          <span class="badge-tag">Soft Robotics</span>
+          <span class="badge-tag">SolidWorks</span>
+          <span class="badge-tag">Sensors</span>
+          <span class="badge-tag">Prototyping</span>
+          <div class="meta-date">Completed: January 2022</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Background &amp; Motivation</h3>
+          <p>In 2020 alone, 107 people drowned in the Netherlands. When someone cannot be rescued in time, their body has
+            to be recovered from the water - often by experienced divers, which is slow, dangerous, and takes a heavy
+            emotional toll. Commissioned by the Mechatronics research group at Saxion, this project explored a
+            mechatronic alternative: a retrieval unit for <strong>"Dorus"</strong>, an autonomous fire-service rescue
+            boat prototype, that picks a body up from the lake bed and brings it to the surface.</p>
+          <div class="detail-gallery">
+            <figure class="detail-figure contain">
+              <img src="../images/body-full-assembly.png" alt="CAD render of the complete retrieval system">
+              <h4>Full retrieval assembly</h4>
+              <figcaption>Complete system: soft gripper on a moving holder inside the sealed, protective box.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/body-gripper-assembly.png" alt="CAD render of the gripper holder and box frame">
+              <h4>Gripper holder &amp; box</h4>
+              <figcaption>Gripper holder and box frame that guide and protect the body.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/body-magnetic-coupling.png" alt="Exploded CAD view of the magnetic coupling">
+              <h4>Magnetic coupling</h4>
+              <figcaption>Transmits motion through the sealed wall, keeping the drive fully waterproof.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Assignment &amp; Key Requirements</h3>
+          <p>The goal was to design and test a prototype retrieval system that recovers a submerged body and lifts it to
+            the surface without damage, so relatives can say a dignified goodbye and an autopsy remains possible. Key
+            requirements:</p>
+          <ul>
+            <li>The system must be waterproof and must not capsize the boat.</li>
+            <li>It must avoid obstacles and measure the distance to the lake bed to avoid collisions.</li>
+            <li>It must grasp the body without harming it and not release it until commanded.</li>
+            <li>A pressure sensor must detect contact from at least 4.5 N.</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h3>Approach</h3>
+          <p>We structured the project around the V-model. From the requirements we defined the functions, built a
+            morphological overview, and combined the possible solutions into three concepts. These were scored against
+            four weighted criteria - functionality (30%), feasibility (35%), sustainability (20%) and price (15%) - to
+            select the best design, then detailed across the mechanical, electrical, electronic and software domains.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3>The Concept</h3>
+          <p>To satisfy the "do not damage the body" requirement, the core of the concept is a <strong>soft gripper</strong>
+            cast from a two-component silicone (Ecoflex) in custom 3D-printed molds. Air pumped into its channels by a
+            syringe (driven by a DC motor and spindle) makes the soft fingers curl closed and open. The gripper and its
+            box protect the body and shield it from bystanders, with the electronics in a sealed compartment behind
+            plexiglass. To keep the drive waterproof, linear motion is transferred through the plexiglass with a
+            <strong>magnetic coupling</strong>: a stepper motor turns a disc of magnets that drives a matching disc on the
+            other side, connected through a gear and timing belt to the moving gripper holder. Ultrasonic sensors sense
+            the surroundings and detect the body, and a pressure sensor in the gripper confirms contact.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3>Testing &amp; Results</h3>
+          <p>Seven tests were derived from the requirements. Because of the COVID-19 lockdown the prototype could not be
+            fully assembled, so some values were estimated and a simulation was made to compensate. The main results:</p>
+          <ul>
+            <li><strong>Waterproofing</strong> - passed (watertight over 10 runs of 5 minutes at 1 m depth).</li>
+            <li><strong>Environment &amp; body detection</strong> (ultrasonic) - passed.</li>
+            <li><strong>Gripper overshoot after contact</strong> - failed; the holder slid more than the allowed 1 cm.</li>
+            <li><strong>No damage to the object</strong> - passed.</li>
+            <li><strong>90&deg; tilt within 15 s</strong> - passed on average.</li>
+            <li><strong>Pressure sensor at 4.5 N</strong> - failed; the sensor did not always trigger at the threshold.</li>
+          </ul>
+          <div class="highlight-note">The two failed tests have limited impact - the soft silicone gripper is unlikely to damage a body even with a small overshoot or a slightly delayed trigger.</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Conclusions &amp; Recommendations</h3>
+          <p>The retrieval system is a promising concept but not yet complete: it needs tuning so the gripper does not
+            overshoot, and the pressure-sensor sensitivity should be handled in software. The soft gripper and protective
+            box are strong features, and ultrasonic sensing works well underwater. For future work I recommended
+            exploring different soft grippers, replacing the large hinge with a robot arm for more precise positioning,
+            optimising the magnetic coupling, and using ferrofluid to seal the stepper motor. Overall the concept offers
+            a solid basis for a system that lets fewer divers risk their lives.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">&copy; Copyright <strong><span>Steyn Schippers</span></strong></div>
+      <div class="footer-links"><a href="mailto:steyn.schippers@kpnmail.nl">steyn.schippers@kpnmail.nl</a></div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

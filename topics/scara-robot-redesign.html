@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>SCARA Robot Redesign - Steyn Schippers</title>
+  <meta name="description" content="SCARA robot redesign for a maxon trade-fair demonstrator.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="../assets/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <i class="bi bi-list mobile-nav-toggle"></i>
+
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=200&h=200&auto=format&fit=crop"
+          alt="Steyn Schippers" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="../index.html">Steyn Schippers</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://nl.linkedin.com/in/steyn-schippers" class="linkedin" title="LinkedIn" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a>
+          <a href="mailto:steyn.schippers@kpnmail.nl" class="email" title="Email"><i class="bx bx-envelope"></i></a>
+        </div>
+      </div>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="../index.html#hero" class="nav-link"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="../index.html#about" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="../index.html#skills" class="nav-link"><i class="bx bx-award"></i> <span>Skills</span></a></li>
+          <li><a href="../index.html#resume" class="nav-link"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="../index.html#projects" class="nav-link active"><i class="bx bx-book-content"></i> <span>Projects</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="project-detail">
+      <div class="container" data-aos="fade-up">
+
+        <a href="../index.html#projects" class="back-btn"><i class="bx bx-arrow-back"></i> Back to Projects</a>
+
+        <div class="section-title">
+          <h2>SCARA Robot Redesign</h2>
+          <p>Internship at maxon Benelux redesigning a dual-axis parallel SCARA demonstrator: a compliant mechanism and
+            redesigned distal arms fixed an unstable flipping motion, cutting the demo cycle to about 24 seconds and
+            preparing the Z-axis for a future maxon-driven end-effector.</p>
+        </div>
+
+        <div class="detail-meta">
+          <span class="badge-tag">Mechatronics</span>
+          <span class="badge-tag">SCARA Robot</span>
+          <span class="badge-tag">SolidWorks</span>
+          <span class="badge-tag">Compliant Mechanism</span>
+          <span class="badge-tag">Internship</span>
+          <div class="meta-date">Completed: January 2026</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Background</h3>
+          <p>maxon is a global manufacturer of high-precision drive systems - motors, gearheads and controllers used in
+            medical technology, aerospace and industrial automation. To showcase its mechatronic capability for the
+            growing semiconductor market, maxon built a dual-axis parallel SCARA robot (Selective Compliance Assembly
+            Robot Arm) as a trade-fair demonstrator.</p>
+          <p>The demonstrator is driven by two frameless DT85M motors, each moving a proximal and a distal arm of equal
+            length, controlled by a MiniMACS6 master controller. It was recently fitted with an end-effector consisting
+            of a stepper-driven Z-axis and an electromagnetic gripper. During my internship at maxon Benelux I was tasked
+            with redesigning this demonstrator.</p>
+          <div class="detail-gallery">
+            <figure class="detail-figure">
+              <img src="../images/scara-demonstrator-arm.jpg" alt="SCARA arm on the demonstrator table">
+              <h4>Trade-fair demonstrator</h4>
+              <figcaption>The dual-axis SCARA arm mounted on the demonstrator table.</figcaption>
+            </figure>
+            <figure class="detail-figure">
+              <img src="../images/scara-dual-axis-top.jpg" alt="Top view of the dual-axis parallel SCARA arm">
+              <h4>Dual-axis parallel arm</h4>
+              <figcaption>Two frameless DT85M motors each drive one proximal and one distal arm.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Problem &amp; Objectives</h3>
+          <p>Although the demonstrator was technically functional, several limitations reduced its impact as a showcase:</p>
+          <ul>
+            <li>The flipping motion (moving from one side to the other) was slow and inefficient, requiring two separate motor movements and increasing cycle time.</li>
+            <li>There was insufficient space in the end-effector axis to integrate a future maxon-driven end-effector.</li>
+            <li>The stepper-driven Z-axis lacked the desired performance.</li>
+            <li>The MiniMACS6 controller offered no trajectory planning or high-rate feedback and could not exploit the high-resolution encoders, leading to poor tuning and reduced accuracy.</li>
+          </ul>
+          <p>The project therefore had three objectives: achieve a stable and fast flipping motion, make the system ready
+            for a future maxon-driven end-effector, and implement a new master controller with higher bandwidth and
+            advanced trajectory planning. In scope was the redesign of the arms and Z-axis, controller selection, and a
+            validated prototype; the end-effector itself and commercial scaling were out of scope.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3>Approach</h3>
+          <p>I followed a requirement-driven engineering process based on the V-model, keeping every design decision
+            traceable back to a requirement: research and analysis of the existing system, functional design with
+            morphological charts and decision matrices, technical design (geometry, materials, tolerances, components),
+            and finally prototype realization and validation against the Critical-to-Quality (CTQ) requirements.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3>Functional Design: fixing the flip</h3>
+          <p>The core functional problem was the instability of the flipping motion. Its origin is kinematic: near the
+            transition the parallel arm passes through an over-centre configuration where small differences in friction,
+            clearance and compliance decide which way the arm snaps, making the flip unpredictable and slow.</p>
+          <p>Instead of fighting the tolerances, I introduced controlled compliance. The chosen solution redesigns the
+            distal arms and adds a <strong>compliant mechanism</strong> that absorbs the over-centre lock-up and
+            compensates for tolerance build-up, while a redesigned Z-axis structure frees up space for the future
+            end-effector.</p>
+          <div class="highlight-note">Key idea: add deliberate, controlled compliance so the arm no longer locks up at the over-centre point of the flip.</div>
+          <div class="detail-gallery">
+            <figure class="detail-figure contain">
+              <img src="../images/scara-compliant-endeffector.png" alt="CAD concept of the compliant end-effector axis">
+              <h4>End-effector axis concept</h4>
+              <figcaption>Concept for the compliant axis and end-effector interface, with a pass-through bore for a future maxon-driven end-effector.</figcaption>
+            </figure>
+            <figure class="detail-figure">
+              <img src="../images/scara-compliant-mechanism.png" alt="3D-printed compliant mechanism hubs">
+              <h4>Printed compliant mechanism</h4>
+              <figcaption>The realized compliant mechanism: spiral flexures integrated directly into the axis hubs.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Technical Design &amp; Prototype</h3>
+          <p>The compliant axis was verified with a structural (FEM) simulation for deformation and stress before
+            manufacturing. Components were selected to match the CTQ requirements, including deep-groove ball bearings
+            (NSK 6802ZZ and SKF 61803) and a Smalley wave spring to set the axial preload. The realized prototype
+            integrates the redesigned distal arms, the compliant mechanism and the reworked Z-axis, providing roughly
+            <strong>2 mm of translational adjustment</strong> (requirement: at least 1 mm) and an inner bore of at least
+            <strong>10 mm</strong> for end-effector pass-through, all within maxon's volume envelope.</p>
+          <div class="detail-gallery">
+            <figure class="detail-figure contain">
+              <img src="../images/scara-fem-simulation.png" alt="Von Mises stress simulation of the compliant mechanism">
+              <h4>FEM stress simulation</h4>
+              <figcaption>Static von Mises analysis used to verify the compliant mechanism stays within the material's yield strength.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/scara-distal-arm-exploded.png" alt="Exploded view of the redesigned distal arm">
+              <h4>Distal arm assembly</h4>
+              <figcaption>Exploded assembly with ball bearings and the Smalley wave spring that sets the axial preload.</figcaption>
+            </figure>
+            <figure class="detail-figure">
+              <img src="../images/scara-distal-arm.png" alt="3D-printed redesigned distal arm">
+              <h4>Redesigned distal arm</h4>
+              <figcaption>The 3D-printed redesigned distal arm ready for assembly.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Validation &amp; Results</h3>
+          <ul>
+            <li>The complete demonstrator sequence was reduced to approximately <strong>24 seconds</strong>, inside the 19-25 second target range.</li>
+            <li>The compliant mechanism delivered the required translational adjustment and tolerance compensation.</li>
+            <li>All components fit within maxon's volume claim, and the Z-axis is ready for a future maxon-driven end-effector.</li>
+            <li>Noise behaviour improved qualitatively compared with the previous configuration.</li>
+          </ul>
+          <p>The intended new master controller could not be implemented within the available time and after a hardware
+            failure of the existing controller. The MiniMACS6 was retained, and I adapted the control software to
+            reliably demonstrate an outward flipping motion in joint mode, working around the limitations of the built-in
+            DualScara kinematics.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3>Reflection</h3>
+          <p>This internship pushed my analytical and decision-making skills: reasoning about kinematics, singularities
+            and tolerance stack-up to explain why the flip was unstable, then choosing compliance as the solution. It
+            also taught me to plan realistically and respond to scope changes - when the controller could not be
+            replaced, I re-focused on delivering a reliable mechanical prototype and a working demonstration. Finally, it
+            gave me experience with stakeholder expectations, documentation and engineering in a corporate environment.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">&copy; Copyright <strong><span>Steyn Schippers</span></strong></div>
+      <div class="footer-links"><a href="mailto:steyn.schippers@kpnmail.nl">steyn.schippers@kpnmail.nl</a></div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

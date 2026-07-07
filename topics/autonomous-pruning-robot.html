@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Autonomous Pruning Robot - Steyn Schippers</title>
+  <meta name="description" content="Autonomous apple-tree pruning robot research project.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="../assets/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <i class="bi bi-list mobile-nav-toggle"></i>
+
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=200&h=200&auto=format&fit=crop"
+          alt="Steyn Schippers" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="../index.html">Steyn Schippers</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://nl.linkedin.com/in/steyn-schippers" class="linkedin" title="LinkedIn" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a>
+          <a href="mailto:steyn.schippers@kpnmail.nl" class="email" title="Email"><i class="bx bx-envelope"></i></a>
+        </div>
+      </div>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="../index.html#hero" class="nav-link"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="../index.html#about" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="../index.html#skills" class="nav-link"><i class="bx bx-award"></i> <span>Skills</span></a></li>
+          <li><a href="../index.html#resume" class="nav-link"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="../index.html#projects" class="nav-link active"><i class="bx bx-book-content"></i> <span>Projects</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="project-detail">
+      <div class="container" data-aos="fade-up">
+
+        <a href="../index.html#projects" class="back-btn"><i class="bx bx-arrow-back"></i> Back to Projects</a>
+
+        <div class="section-title">
+          <h2>Autonomous Pruning Robot for Apple Orchards</h2>
+          <p>Multidisciplinary research project with Wageningen Research, Fontys, Munckhof and Riwo into an autonomous
+            apple-tree pruning robot, focused on the sensing requirements and a cutting mechanism.</p>
+        </div>
+
+        <div class="detail-meta">
+          <span class="badge-tag">Mechatronics</span>
+          <span class="badge-tag">Agri-Robotics</span>
+          <span class="badge-tag">Machine Vision</span>
+          <span class="badge-tag">Sensing</span>
+          <span class="badge-tag">Sustainability</span>
+          <div class="meta-date">Completed: June 2024</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Background</h3>
+          <p>Automation in agriculture is becoming increasingly important because of labour shortages and the need for
+            more efficient farming. This project investigated a robotic system that can autonomously prune apple trees in
+            orchards. It was a multidisciplinary research project with five partners: Munckhof Fruit Tech Innovators and
+            Riwo Engineering B.V. (developing the end-effectors), together with Wageningen Research, Saxion and Fontys.
+            The work explicitly addressed the United Nations Sustainable Development Goals.</p>
+          <div class="detail-gallery">
+            <figure class="detail-figure">
+              <img src="../images/pruning-test-setup.jpg" alt="Test setup with artificial apple trees">
+              <h4>Sensing test setup</h4>
+              <figcaption>Test setup with artificial apple trees, used to evaluate whether the camera could capture enough detail for pruning-point detection.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3>My Role &amp; Objectives</h3>
+          <p>Within the team I focused on the <strong>data analysis / sensing side</strong> and on the design of a
+            mechanism for automatic branch detection and removal. The two project objectives were to research and
+            conceptualize which data is necessary to identify branches that need removing, and to research and
+            conceptualize a mechanism that can prune those branches. The project followed the V-model but deliberately
+            covered only its analysis and conceptualization stages, replacing detailed design with a proof of principle.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3>The most impactful decision: sensing resolution</h3>
+          <p>The most important decision came from a business-case analysis of two data-processing philosophies:</p>
+          <ul>
+            <li><strong>Basic processing</strong> needs a point-cloud resolution of about 2 mm/pixel, but leads to a revenue loss of roughly &euro;34,800 per year.</li>
+            <li><strong>Advanced processing</strong> needs a sub-millimetre resolution of about 0.5 mm/pixel, but can increase revenue by roughly &euro;24,000 per year.</li>
+          </ul>
+          <p>The advanced method was therefore selected, and the sensing requirements were derived from its demanding
+            resolution target.</p>
+          <div class="detail-gallery">
+            <figure class="detail-figure contain">
+              <img src="../images/pruning-sensing-architecture.png" alt="Three Intel RealSense D435 cameras connected to a computer">
+              <h4>Sensing architecture</h4>
+              <figcaption>Proposed architecture using multiple Intel RealSense D435 depth cameras connected to a central computer.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/pruning-realsense-d435.jpg" alt="Intel RealSense D435 RGB-D camera">
+              <h4>Intel RealSense D435</h4>
+              <figcaption>The RGB-D depth camera that was evaluated as the sensing solution.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Sensor testing</h3>
+          <p>Because a single still image does not have enough resolution even for the basic method, the proof of
+            principle tested whether merging multiple static images could raise the effective resolution high enough. The
+            result was disappointing: the achieved resolution was around <strong>6.9 mm/pixel</strong> - almost 3.5&times;
+            too coarse - making the Intel RealSense D435 unsuitable for reliable pruning-point determination.</p>
+          <div class="highlight-note">Key finding: the RealSense D435 reaches ~6.9 mm/pixel, far short of the 0.5 mm/pixel needed for the chosen advanced method.</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Pruning mechanism</h3>
+          <ul>
+            <li>Cutting is the most suitable method for branch removal.</li>
+            <li>The required cutting force is about <strong>95 N</strong> at 10 cm from the scissor fulcrum.</li>
+            <li>Pneumatic cutting is the best way to implement it.</li>
+            <li>An additional rotation axis was conceptualized, but Riwo had already designed this, so it was dropped.</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h3>Conclusions &amp; Recommendations</h3>
+          <p>The objectives were partly met: the required data was analysed and a sensing concept tested (but found
+            infeasible with the chosen sensor), while the pruning mechanism was successfully conceptualized. The client
+            valued the work as a solid pre-study for their Smart Mechatronics research lab. Main recommendations: replace
+            the RealSense D435 with a Lidar sensor, pursue research into more effective pruning-point determination to
+            relax the resolution requirement, and explore multispectral imaging for crop-health and frost prediction.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">&copy; Copyright <strong><span>Steyn Schippers</span></strong></div>
+      <div class="footer-links"><a href="mailto:steyn.schippers@kpnmail.nl">steyn.schippers@kpnmail.nl</a></div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
