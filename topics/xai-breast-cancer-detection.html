@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Explainable AI for Breast Cancer Detection - Steyn Schippers</title>
+  <meta name="description" content="A dual-track, explainable deep learning system for breast imaging that classifies, segments and cross-checks Grad-CAM attention against the predicted lesion mask.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="../assets/css/main.css" rel="stylesheet">
+
+  <style>
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.95rem;
+    }
+    .data-table th,
+    .data-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border: 1px solid #e4e4e4;
+      vertical-align: top;
+    }
+    .data-table th {
+      background-color: #f7f8fa;
+      font-weight: 600;
+    }
+    .agree-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.82em;
+      font-weight: 700;
+      white-space: nowrap;
+      color: #fff;
+    }
+    .agree-strong { background: #00b050; }
+    .agree-moderate { background: #ffc000; color: #1f1f1f; }
+    .agree-weak { background: #e03131; }
+    .research-disclaimer {
+      margin-top: 20px;
+      padding: 12px 16px;
+      border-left: 4px solid #b71c1c;
+      background: rgba(183, 28, 28, 0.06);
+      font-style: italic;
+    }
+    @media (max-width: 600px) {
+      .data-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .data-table th, .data-table td { padding: 8px; font-size: 0.88em; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <i class="bi bi-list mobile-nav-toggle"></i>
+
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=200&h=200&auto=format&fit=crop"
+          alt="Steyn Schippers" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="../index.html">Steyn Schippers</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://nl.linkedin.com/in/steyn-schippers" class="linkedin" title="LinkedIn" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a>
+          <a href="mailto:steyn.schippers@kpnmail.nl" class="email" title="Email"><i class="bx bx-envelope"></i></a>
+        </div>
+      </div>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="../index.html#hero" class="nav-link"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="../index.html#about" class="nav-link"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="../index.html#skills" class="nav-link"><i class="bx bx-award"></i> <span>Skills</span></a></li>
+          <li><a href="../index.html#resume" class="nav-link"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="../index.html#projects" class="nav-link active"><i class="bx bx-book-content"></i> <span>Projects</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="project-detail">
+      <div class="container" data-aos="fade-up">
+
+        <a href="../index.html#projects" class="back-btn"><i class="bx bx-arrow-back"></i> Back to Projects</a>
+
+        <div class="section-title">
+          <h2>Explainable AI for Breast Cancer Detection</h2>
+          <p>A dual-track, explainable deep learning system for breast imaging: one track answers <em>what</em> the image
+            shows and <em>why</em>, an independent track answers <em>where</em> the lesion is, and a comparison node checks
+            whether the two agree, turning an asserted explanation into a verified one.</p>
+        </div>
+
+        <div class="detail-meta">
+          <span class="badge-tag">Medical Imaging</span>
+          <span class="badge-tag">Explainable AI</span>
+          <span class="badge-tag">Grad-CAM</span>
+          <span class="badge-tag">ResNet50</span>
+          <span class="badge-tag">U-Net</span>
+          <div class="meta-date">Completed: June 2026</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Abstract</h3>
+          <p>Deep learning models can match expert radiologists at spotting breast cancer, but a diagnosis that cannot be
+            explained is hard to trust in the clinic. This project builds a dual-track, explainable system for breast
+            imaging: one track answers <em>what</em> the image shows and <em>why</em>, and an independent track answers
+            <em>where</em> the lesion is. A comparison node then checks whether the two tracks point at the same place,
+            turning an asserted explanation into a verified one.</p>
+          <p>Concretely, a ResNet50 classifier labels each image benign, malignant, or normal and produces a Grad-CAM
+            attention heatmap. A separate U-Net / UNet++ segmentor outlines the lesion. The comparison node thresholds the
+            heatmap into an attention region and measures how much of the predicted lesion mask falls inside it
+            (<em>coverage</em>), collapsing the result into a single Strong / Moderate / Weak agreement badge per case.</p>
+          <p>On breast ultrasound the classifier reached 86.4% accuracy (0.86 macro-F1) and the optimized segmentor reached
+            Dice 0.779. A clinical review with nine reviewers rated the outputs 3.64/5 on average, above the 3.5 target.
+            This was a four-person European Project Semester project; I led the explainability integration (Grad-CAM and
+            Score-CAM) and the cross-track comparison node, so this write-up focuses there.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3>Background: detection is not the hard part, trust is</h3>
+          <p>Breast cancer accounts for more than two million new cases every year. The diagnostic path today is
+            resource-intensive, involves invasive and stressful biopsies, and produces long waits for results. Worse, it is
+            not always consistent: on second review, radiologists fully disagree on benign vs. malignant for the same scan
+            in roughly 10-19% of cases, and partially disagree on grade or subtype in another 20-34%.</p>
+          <p>AI can help. A meta-analysis of over 120,000 patients found that modern models match or outperform expert
+            radiologists at catching cancers. But a black-box prediction is not enough for clinical use: a clinician needs
+            to see <em>why</em> the model decided what it did, and to trust that the explanation is pointing at the actual
+            lesion rather than at an artifact.</p>
+          <div class="highlight-note">Core idea: two models trained independently. If the classifier's attention and the
+            segmentor's outline land on the same region, the explanation is verified by agreement rather than asserted.</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Research Questions</h3>
+          <ol>
+            <li><strong>Classification:</strong> Can a model reliably tell whether a breast image is benign, malignant, or
+              normal?</li>
+            <li><strong>Segmentation:</strong> Can we localise the lesion with a pixel-level mask?</li>
+            <li><strong>Explainability:</strong> Does the model's explanation actually point to the real lesion, and can we
+              verify that?</li>
+            <li><strong>Clinical validation:</strong> Do medical experts find the outputs interpretable and useful?</li>
+          </ol>
+          <div class="highlight-note">Overarching question: Can an AI system reliably support breast cancer diagnosis while
+            providing explanations that clinicians understand and trust?</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Datasets</h3>
+          <p>Two datasets are handled through a single unified layout. US-Arya (breast ultrasound, BUSI-derived) is the
+            primary dataset: it is small, fast to iterate on, has paired lesion masks, and covers three classes. CBIS-DDSM
+            (mammography) is a two-class secondary baseline. Optimization focused on US-Arya because its segmentation masks
+            are reliable enough to anchor the cross-track comparison.</p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Dataset</th>
+                <th>Modality</th>
+                <th>Train / Val / Test</th>
+                <th>Classes</th>
+                <th>Class weights</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>US-Arya</strong></td>
+                <td>Ultrasound</td>
+                <td>544 / 118 / 118</td>
+                <td>benign 437, malignant 210, normal 133</td>
+                <td>[0.60, 1.24, 1.95]</td>
+              </tr>
+              <tr>
+                <td><strong>CBIS-DDSM</strong></td>
+                <td>Mammography</td>
+                <td>2010 / 431 / 431</td>
+                <td>benign 1595, malignant 1277</td>
+                <td>[0.90, 1.13]</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Splits are stratified per class (seed 42). Inverse-frequency class weights feed a weighted cross-entropy loss
+            to counter the imbalance. Preprocessing always applies CLAHE (contrast-limited adaptive histogram equalization)
+            to boost local contrast in ultrasound, followed by ImageNet normalization. Masks are matched to images by naming
+            convention; the normal class gets an all-zero mask.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3>Methodology: dual-track framework</h3>
+          <p>The system runs two independent tracks that meet at a comparison node:</p>
+          <ul>
+            <li><strong>Upper track (what / why):</strong> a classifier assigns a label, and Grad-CAM extracts a heatmap of
+              the regions that drove the decision.</li>
+            <li><strong>Lower track (where):</strong> a segmentor independently predicts a binary lesion mask.</li>
+            <li><strong>Comparison node:</strong> the heatmap is thresholded into an attention region and compared with the
+              mask, producing a single agreement badge.</li>
+          </ul>
+          <div class="detail-gallery">
+            <figure class="detail-figure contain">
+              <img src="../images/xai-concept-original.png" alt="Input ultrasound image">
+              <h4>Input image</h4>
+              <figcaption>The raw breast ultrasound image entering both tracks.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/xai-concept-classifier.png" alt="Classification model">
+              <h4>Classifier - what</h4>
+              <figcaption>ResNet50 assigns benign / malignant / normal.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/xai-concept-heatmap.png" alt="Grad-CAM heatmap">
+              <h4>Grad-CAM - why</h4>
+              <figcaption>Attention heatmap of the regions that drove the decision.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/xai-concept-segmentor.png" alt="Segmentation model">
+              <h4>Segmentor - where</h4>
+              <figcaption>An independent model predicts the lesion location.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/xai-concept-mask.png" alt="Predicted lesion mask">
+              <h4>Predicted lesion mask</h4>
+              <figcaption>The pixel-level outline the comparison node checks against.</figcaption>
+            </figure>
+          </div>
+
+          <h3>Transfer learning</h3>
+          <p>Both tracks start from ImageNet-pretrained backbones and are fine-tuned on breast images, so a small medical
+            dataset is enough. The early stages (generic edges and textures) stay frozen; the deeper stages and a fresh head
+            are retrained.</p>
+          <ul>
+            <li><strong>Classifier:</strong> ResNet50. Baseline trains only <code>layer4</code> + head; the optimized run
+              also unfreezes <code>layer3</code> (at LR/10) and adds weight decay, label smoothing, and early stopping.</li>
+            <li><strong>Segmentor:</strong> ResNet34 encoder. Baseline is a plain U-Net; the optimized run switches to
+              UNet++ with a combined BCE + Dice + Tversky loss (Tversky &alpha;=0.7, &beta;=0.3 to penalize missed lesion
+              pixels) and stronger, ultrasound-aware augmentation.</li>
+          </ul>
+
+          <h3>Explainability: Grad-CAM, cross-checked with Score-CAM</h3>
+          <p>Grad-CAM was chosen as the primary method because it is designed for CNN image classifiers, produces a
+            class-discriminative spatial heatmap that can be compared pixel-for-pixel with the lesion mask, and needs no
+            retraining. It is read from the deepest convolutional block of ResNet50 (<code>layer4[-1]</code>), the last
+            layer that still keeps spatial layout. The heatmap is then thresholded at the top 30% of pixels (percentile
+            p=70) into a binary attention region.</p>
+          <p>LIME was rejected as unstable and patchy, and SHAP as too heavy for dense pixel maps. Score-CAM is kept as an
+            independent, gradient-free second opinion: when it agrees with Grad-CAM, the highlighted region is more credibly
+            what the classifier actually relies on.</p>
+
+          <h3>Comparison node: coverage over raw overlap</h3>
+          <p>The attention region and the lesion mask are compared two ways. Dice and IoU score how similar the two
+            <em>shapes</em> are, but they unfairly penalize the size mismatch between a broad attention blob and a tight
+            lesion outline. So the decisive measure is <strong>coverage</strong>: the fraction of the predicted lesion mask
+            that falls <em>inside</em> the attention region. Coverage answers the clinical question directly - is the lesion
+            contained in the area the classifier looked at?</p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Situation</th>
+                <th>Rule</th>
+                <th>Badge</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Predicted normal, empty mask</td>
+                <td>both tracks agree: no lesion</td>
+                <td><span class="agree-badge agree-strong">Strong</span></td>
+              </tr>
+              <tr>
+                <td>Predicted lesion</td>
+                <td>coverage &ge; 90%</td>
+                <td><span class="agree-badge agree-strong">Strong</span></td>
+              </tr>
+              <tr>
+                <td>Predicted lesion</td>
+                <td>coverage 50-90%</td>
+                <td><span class="agree-badge agree-moderate">Moderate</span></td>
+              </tr>
+              <tr>
+                <td>Predicted lesion</td>
+                <td>coverage &lt; 50%, or classifier flags a lesion the segmentor cannot find</td>
+                <td><span class="agree-badge agree-weak">Weak</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="detail-section">
+          <h3>Results: classification</h3>
+          <p>On the held-out US-Arya test split the classifier reached 86.4% accuracy and 0.86 macro-F1, clearing the
+            project targets (&ge;70% accuracy, &ge;0.65 F1). Optimization did not raise overall accuracy but trained more
+            stably (best validation F1 0.850 &rarr; 0.879) and caught one more malignant case (recall 0.84 &rarr; 0.88).</p>
+          <div class="detail-gallery">
+            <figure class="detail-figure contain">
+              <img src="../images/xai-confusion-matrix.png" alt="Confusion matrix on US-Arya test set">
+              <h4>Confusion matrix</h4>
+              <figcaption>Right on the diagonal, wrong off it, on the US-Arya test set.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/xai-per-class-metrics.png" alt="Per-class precision, recall, F1">
+              <h4>Per-class metrics</h4>
+              <figcaption>Precision / recall / F1 per class.</figcaption>
+            </figure>
+          </div>
+          <p>Per class (precision / recall / F1): benign 0.89 / 0.86 / 0.88, malignant 0.80 / 0.88 / 0.84, normal 0.84 /
+            0.80 / 0.82. On the harder CBIS-DDSM mammography set the classifier reached 70.8% / 0.70, meeting the minimum bar
+            but overfitting more.</p>
+
+          <h3>Segmentation</h3>
+          <p>Switching U-Net to UNet++ with the Tversky-weighted loss was the biggest single win: test Dice rose 0.718
+            &rarr; 0.779 and IoU 0.603 &rarr; 0.661 (best validation Dice 0.814). This gives the comparison node a reliable
+            outline to check the attention region against.</p>
+
+          <h3>Grad-CAM by class</h3>
+          <p>Each row is the original ultrasound, the raw heatmap, and the overlay with the predicted label and confidence.
+            On the correctly classified benign and malignant rows the attention sits on the lesion; the misread normal row
+            latches onto background tissue - exactly the failure mode the cross-check is designed to catch.</p>
+          <div class="detail-gallery">
+            <figure class="detail-figure contain">
+              <img src="../images/xai-gradcam-benign.png" alt="Grad-CAM on a benign case">
+              <h4>Benign (correct)</h4>
+              <figcaption>Attention sits on the lesion.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/xai-gradcam-malignant.png" alt="Grad-CAM on a malignant case">
+              <h4>Malignant (correct)</h4>
+              <figcaption>Attention sits on the lesion.</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/xai-gradcam-normal.png" alt="Grad-CAM on a normal case">
+              <h4>Normal (misread)</h4>
+              <figcaption>Attention latches onto background tissue.</figcaption>
+            </figure>
+          </div>
+
+          <h3>Tuning the explanation</h3>
+          <p>Two settings behind the comparison were checked empirically. A threshold sweep showed the best cross-track
+            overlap when keeping the brightest 30% of the heatmap (p=70), and a target-layer ablation confirmed the deepest
+            block gives the sharpest, most lesion-aligned heatmap.</p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Heatmap threshold</th>
+                <th>Dice</th>
+                <th>IoU</th>
+                <th>Grad-CAM target layer</th>
+                <th>Dice</th>
+                <th>IoU</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>p=30</td><td>0.135</td><td>0.083</td><td>layer3[-1]</td><td>0.133</td><td>0.083</td></tr>
+              <tr><td>p=50</td><td>0.170</td><td>0.110</td><td>layer4[-2]</td><td>0.133</td><td>0.082</td></tr>
+              <tr><td><strong>p=70</strong></td><td><strong>0.208</strong></td><td><strong>0.144</strong></td><td><strong>layer4[-1] (default)</strong></td><td><strong>0.170</strong></td><td><strong>0.110</strong></td></tr>
+              <tr><td>p=90</td><td>0.159</td><td>0.104</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Worked cases: Strong, Moderate, Weak</h3>
+          <p>Each panel shows, left to right: the original image, the Grad-CAM overlay (correct/wrong tag), the radiologist
+            ground-truth mask, the predicted mask with its Dice, and the thresholded attention region.</p>
+          <div class="detail-gallery">
+            <figure class="detail-figure contain">
+              <img src="../images/xai-compare-strong.png" alt="Strong agreement case">
+              <h4><span class="agree-badge agree-strong">Strong</span></h4>
+              <figcaption>Outline sits inside the attention (coverage 100%).</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/xai-compare-moderate.png" alt="Moderate agreement case">
+              <h4><span class="agree-badge agree-moderate">Moderate</span></h4>
+              <figcaption>Outline mostly inside (coverage 62.5%).</figcaption>
+            </figure>
+            <figure class="detail-figure contain">
+              <img src="../images/xai-compare-weak.png" alt="Weak agreement case">
+              <h4><span class="agree-badge agree-weak">Weak</span></h4>
+              <figcaption>Label correct, but the tracks disagree spatially - flagged for work-up.</figcaption>
+            </figure>
+          </div>
+
+          <h3>Score-CAM cross-check</h3>
+          <p>Running the gradient-free Score-CAM produces the same kind of heatmap without using gradients. The two methods
+            agree within one standard deviation, so the findings do not depend on the chosen method.</p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Classification accuracy</th>
+                <th>Mean Dice</th>
+                <th>Mean IoU</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Grad-CAM</td><td>95.2%</td><td>0.170 &plusmn; 0.214</td><td>0.110 &plusmn; 0.148</td></tr>
+              <tr><td>Score-CAM</td><td>85.7%</td><td>0.161 &plusmn; 0.210</td><td>0.104 &plusmn; 0.146</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="detail-section">
+          <h3>Clinical Validation</h3>
+          <p>Strong accuracy proves the model <em>works</em>, not that a clinician would <em>trust and use</em> it. To test
+            that, the per-case outputs were packaged into short reports and put in front of nine reviewers - three medical
+            experts (a pathologist, an internist, and a pediatrician) and six students. Five cases were chosen to span all
+            three classes and all three agreement tiers. After each case, reviewers rated five statements on a 1-5 Likert
+            scale.</p>
+          <div class="detail-gallery">
+            <figure class="detail-figure contain">
+              <img src="../images/xai-questionnaire.png" alt="Post-XAI questionnaire">
+              <h4>Post-XAI questionnaire</h4>
+              <figcaption>Part of the questionnaire rated per case.</figcaption>
+            </figure>
+          </div>
+          <p>The overall score was 3.64/5, above the 3.5 target. Clarity (3.84) and time-saving (3.87) rated highest;
+            diagnostic confidence (3.47) and willingness to adopt (3.42) landed just below the bar. Per-reviewer means ranged
+            widely (2.76 to 4.52), so with only nine people this is indicative rather than settled. The lowest-rated
+            dimension - diagnostic trust - maps directly onto what the experts asked for: show patient history, give a
+            calibrated probability, adopt medical terminology, and test on more cases.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3>Analysis</h3>
+          <p><strong>Why the absolute overlap is small - and why that is fine.</strong> The two tracks answer different
+            questions. The heatmap marks a broad region the classifier attended to; the segmentor returns a tight lesion
+            outline. Even when both are correctly aimed at the lesion, a wide blob and a narrow outline cannot overlap
+            perfectly, so raw Dice has a built-in ceiling. This is exactly why coverage (containment), not Dice (shape
+            similarity), drives the agreement badge.</p>
+          <p><strong>Being right or wrong does not predict spatial agreement.</strong> On the full test split, cross-track
+            Dice on correctly classified images (0.195) is essentially identical to misclassified ones (0.186). A wrong
+            label can still come with a correctly placed attention region, and a correct label can come with poor spatial
+            agreement. Location correctness and label correctness are two separate axes - which is the whole point of
+            measuring them independently.</p>
+          <p><strong>The segmentor is a stable reference.</strong> The segmentor reproduces the radiologist masks at mean
+            Dice 0.716 on the full test split (95% CI [0.645, 0.778]). Because it is trained independently and is reliable,
+            when the classifier and segmentor disagree spatially the disagreement is informative about the classifier, not
+            noise.</p>
+          <div class="highlight-note">Takeaway: agreement between two independently trained models is a usable, honest proxy
+            for trustworthiness - and it flags precisely the cases a clinician should look at more closely.</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>Challenges</h3>
+          <ul>
+            <li>Small ultrasound dataset (780 images): both tracks overfit at baseline, driving the regularization and
+              augmentation choices.</li>
+            <li>Ultrasound speckle noise, addressed with additive Gaussian noise augmentation and CLAHE contrast
+              enhancement.</li>
+            <li>Intrinsic attention-vs-mask shape mismatch, which made raw Dice/IoU misleading and motivated the coverage
+              measure.</li>
+            <li>Low inter-reviewer consensus (n=9): a headline average can hide a real spread of opinion.</li>
+            <li>The mammography set (CBIS-DDSM) segmentation was not reliable enough to anchor the cross-check, so
+              optimization was scoped to ultrasound.</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h3>Future Work</h3>
+          <ul>
+            <li>K-fold / multi-split evaluation for more reliable performance estimates than a single 118-image test set.</li>
+            <li>Add patient history to both training and the clinical review, as the experts requested.</li>
+            <li>Output a calibrated probability rather than a bare label, to address the low diagnostic-confidence rating.</li>
+            <li>Adopt medical terminology in the reports and re-run with a revised questionnaire.</li>
+            <li>A second, larger expert review round.</li>
+            <li>Extend the optimized pipeline and cross-check to CBIS-DDSM mammography.</li>
+          </ul>
+          <div class="research-disclaimer">This system is a research and educational prototype. It is not intended for
+            clinical deployment, autonomous diagnosis, or treatment recommendations, and does not replace clinical
+            judgment.</div>
+        </div>
+
+        <div class="detail-section">
+          <h3>References</h3>
+          <ul>
+            <li>Selvaraju, R. R., et al. (2017). "Grad-CAM: Visual Explanations from Deep Networks via Gradient-based
+              Localization." ICCV.</li>
+            <li>Wang, H., et al. (2020). "Score-CAM: Score-Weighted Visual Explanations for Convolutional Neural Networks."
+              CVPR Workshops.</li>
+            <li>Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016). "Why Should I Trust You? Explaining the Predictions of
+              Any Classifier." KDD (LIME).</li>
+            <li>Lundberg, S. M., &amp; Lee, S.-I. (2017). "A Unified Approach to Interpreting Model Predictions." NeurIPS
+              (SHAP).</li>
+            <li>Al-Dhabyani, W., et al. (2020). "Dataset of breast ultrasound images (BUSI)." Data in Brief.</li>
+            <li>Lee, R. S., et al. (2017). "A curated mammography dataset for use in computer-aided detection (CBIS-DDSM)."
+              Scientific Data.</li>
+            <li>He, K., et al. (2016). "Deep Residual Learning for Image Recognition." CVPR (ResNet).</li>
+            <li>Ronneberger, O., Fischer, P., &amp; Brox, T. (2015). "U-Net: Convolutional Networks for Biomedical Image
+              Segmentation." MICCAI.</li>
+            <li>Hashim, et al. (2025). Meta-analysis of AI vs. radiologist breast cancer detection (120,000+ patients).</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">&copy; Copyright <strong><span>Steyn Schippers</span></strong></div>
+      <div class="footer-links"><a href="mailto:steyn.schippers@kpnmail.nl">steyn.schippers@kpnmail.nl</a></div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
